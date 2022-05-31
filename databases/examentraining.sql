@@ -3,7 +3,8 @@
 CREATE TABLE `docenten` (
   `docentnaam` text NOT NULL,
   `docentcode` int NOT NULL,
-  `lokaal` int NOT NULL
+  `lokaal` int NOT NULL,
+  PRIMARY KEY (`docentcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -12,7 +13,8 @@ CREATE TABLE `inschrijvingen` (
   `id_leerling` int NOT NULL,
   `vakkeuze` varchar(32) NOT NULL,
   `docentcode` varchar(3) NOT NULL,
-  PRIMARY KEY (`vakkeuze`,`id_leerling`)
+  PRIMARY KEY (`id_leerling`,`vakkeuze`),
+  CONSTRAINT `inschrijvingen_ibfk_1` FOREIGN KEY (`id_leerling`) REFERENCES `leerlingen` (`id_leerling`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
